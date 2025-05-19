@@ -4,31 +4,80 @@
   <meta charset="UTF-8">
   <title>Kalkulator Kursów Bukmacherskich</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
-      padding: 30px;
+      background-color: #f0f2f5;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
+
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
     h2 {
+      text-align: center;
+      margin-bottom: 20px;
       color: #333;
     }
-    .container {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      max-width: 500px;
-      margin: auto;
-    }
-    input, select, button {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
+
+    label, select, input, button {
       font-size: 16px;
+      margin-bottom: 12px;
     }
+
+    input, select, button {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 100%;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
     #result {
-      font-weight: bold;
       margin-top: 20px;
+      font-weight: bold;
+      color: #2d2d2d;
+      white-space: pre-line;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      input, select, button {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
@@ -44,7 +93,7 @@
       <option value="usToProfit">Potencjalna wygrana z kursem amerykańskim</option>
     </select>
 
-    <div id="inputFields"></div>
+    <div id="inputFields" class="flex-column"></div>
 
     <button onclick="convert()">Przelicz</button>
     <div id="result"></div>
@@ -114,11 +163,11 @@
           return;
         }
         totalReturn = stake + profit;
-        document.getElementById('result').innerText = `Potencjalny zysk: ${profit.toFixed(2)} zł\nCałkowity zwrot: ${totalReturn.toFixed(2)} zł`;
+        document.getElementById('result').innerText = 
+          `Potencjalny zysk: ${profit.toFixed(2)} zł\nCałkowity zwrot: ${totalReturn.toFixed(2)} zł`;
       }
     }
 
-    // Ustaw domyślne pola na starcie
     window.onload = updateFields;
   </script>
 
